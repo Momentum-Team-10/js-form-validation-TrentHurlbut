@@ -9,6 +9,7 @@ let invalidElements = document.querySelectorAll('.invalid');
 let makeForm = document.getElementById('car-make');
 let modelForm = document.getElementById('car-model');
 let creditCard = document.getElementById('credit-card');
+let dateParking = document.getElementById('start-date');
 
 let form = document.getElementById('parking-form');
 
@@ -18,6 +19,7 @@ form.addEventListener('submit', (event) => {
     validateCarYear(carYear);
     validateMake(makeForm);
     validateModel(modelForm);
+    validateParkingDate(dateParking);
     validateNumOfDays(numOfDays);
     validateCC(creditCard);
     validateCVV(cvv);
@@ -111,20 +113,25 @@ function validateParkingDate(input) {
     let errorPDate = document.createElement('p');
     errorPDate.id = 'error-PDate';
 
+    let errorBlankDate = document.createElement('p');
+    errorBlankDate.id = 'error-blank-date';
+
+    //     if (moment(input.value).isBefore(now)) {
+    //         errorPDate.innerText = "Must enter a date after today's date";
+    //         document.getElementById('start-date-field').appendChild(errorPDate);
+    //         input.classList.remove('valid');
+    //         input.classList.add('invalid');
+    //     } else
     if (input.value !== '') {
+        errorBlankDate.innerText = 'Must enter a start date for parking';
+        document.getElementById('start-date-field').appendChild(errorBlankDate);
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+    } else {
         console.log('test passed!');
         input.classList.remove('invalid');
         input.classList.add('valid');
         document.getElementById('error-Model').remove();
-    } else {
-        if (document.getElementById('error-PDate')) {
-            document.getElementById('error-PDate').remove();
-        }
-
-        errorPDate.innerText = "Must enter a date after today's date";
-        document.getElementById('car-field').appendChild(errorPDate);
-        input.classList.remove('valid');
-        input.classList.add('invalid');
     }
 }
 
@@ -150,7 +157,7 @@ function validateNumOfDays(input) {
 }
 
 function validateCC(input) {
-    let errCC = document.createElement('p');
+    let errorCC = document.createElement('p');
     errorCC.id = 'error-CC';
 
     if (input.value !== '') {
@@ -164,7 +171,7 @@ function validateCC(input) {
         }
 
         errorCC.innerText = 'This is a required field';
-        document.getElementById('car-field').appendChild(errorCC);
+        document.getElementById('credit-card-field').appendChild(errorCC);
         input.classList.remove('valid');
         input.classList.add('invalid');
     }

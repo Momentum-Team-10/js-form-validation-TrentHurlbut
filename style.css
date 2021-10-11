@@ -72,6 +72,8 @@
 #error-Make,
 #error-Name,
 #error-Model,
-#error-CC {
+#error-CC,
+#error-PDate,
+#error-blank-date {
     color: #dc2626;
 }
