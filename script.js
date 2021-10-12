@@ -46,6 +46,8 @@ function validateName(input) {
     }
 }
 
+console.log(moment());
+
 function validateCarYear(input) {
     let errorCY = document.createElement('p');
     errorCY.id = 'error-CY';
